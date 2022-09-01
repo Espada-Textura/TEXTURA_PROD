@@ -1,42 +1,22 @@
-version: "3"
+version: '3'
 
 services:
   web:
-    container_name: web
-    platform: linux/x86_64
-    build: ./services/web
-    command: python manage.py run -h 0.0.0.0
-    volumes:
-      - ./services/web/:/usr/src/app/
+    container_name: nginx
+    build: 
+      context: . 
+      dockerfile: DockerfileNginx
     ports:
-      - 5000:5000
-      - 5555:5555
-    env_file:
-      - ./.env.dev
-    depends_on:
-      - db
-      - broker
-  db:
-    container_name: db
-    image: postgres:12-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      - ./services/web/database:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=db_user
-      - POSTGRES_PASSWORD=db_password
-      - POSTGRES_MULTIPLE_DATABASES=db_dev,db_test
-  broker:
-    container_name: broker
-    image: rabbitmq:3.7.14-management
-    environment:
-      - RABBITMQ_DEFAULT_USER=rabbit-user
-      - RABBITMQ_DEFAULT_PASS=rabbit-password
-  docs:
-    container_name: docs
-    image: swaggerapi/swagger-ui:3.28.0
-    build: ./services/docs
-    ports:
-      - 8000:8080
-volumes:
-  postgres_data:
+      - "80:80"
+    command: nginx -g "daemon off";
+    depends_on:      
+      - python_api
+
+  python_api:
+    container_name: python
+    build: 
+      context: . 
+      dockerfile: DockerfilePython
+    expose:
+      - "5000"
+    command: gunicorn -w 1 app:APP -b :5000 --reload
