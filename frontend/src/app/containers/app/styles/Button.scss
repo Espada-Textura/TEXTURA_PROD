@@ -1,0 +1,56 @@
+@import 'Color.scss';
+
+.--tr-button-large {
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 16px;
+  height: 56px;
+}
+
+.--tr-button-medium {
+  padding: 0 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  height: 40px;
+}
+
+.--tr-button-small {
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  height: 36px;
+  font-weight: 500;
+}
+
+.--tr-button-filled{
+  color: white;
+  background-color: $accent_color;
+}
+
+.--tr-button-outlined{
+  color: $accent_color;
+  border: solid 2px $accent_color;
+}
+
+.--tr-button-outlined-filled{
+  color: $accent_color_20;
+  border: solid 2px $accent_color;
+}
+
+.--tr-button-plain{
+  color: white;
+  background-color: $accent_color;
+}
+
+.--tr-button-plain-filled{
+  color: $accent_color;
+  background-color: $accent_color_20;
+}
+
+
+
+button:focus{
+
+}

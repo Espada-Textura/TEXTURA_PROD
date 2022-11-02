@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "app/containers/app/styles/Color.scss";
+
+$plain-text-font: 'Poppins';
+$header-text-font: 'PoetsenOne';
+
+
+body {
+  font-family: $plain-text-font, 'sans-serif', 'serif';
+  font-size: 1rem;
+  color: inherit;
+  background-color: $primary;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+form {
+  accent-color: $accent_color;
+}
+
+::selection {
+  background: $accent_color;
+}
